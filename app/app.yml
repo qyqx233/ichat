@@ -1,0 +1,11 @@
+app:
+    addr: :3000
+    max_cpu: 0
+    static: null
+api_key:
+    openai:
+        - ak: "23"
+db: 
+    driver: sqlite3
+    source: app.db
+param: {}
