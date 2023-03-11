@@ -2,14 +2,20 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"testing"
+	"unsafe"
 
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/qyqx233/chat-go-api/util"
+	"github.com/sashabaranov/go-openai"
 )
 
 func Test2(t *testing.T) {
@@ -35,40 +41,90 @@ func Test2(t *testing.T) {
 	t.Log(string(data))
 }
 
-func TestGetUser(t *testing.T) {
-	// 创建一个新的 Fiber 应用程序
-	app := fiber.New()
-	var c = parseYaml("app.yml")
-	t.Log(c)
+func wrap[S, R any](t *testing.T, prepare func(*S) (url string, app *fiber.App), checkRes func(*R)) {
+	var c = yamlConfig
 	newDB(c.Db)
-	// 注册一个路由
-	app.Post("/api/chat/session", newSession)
-	rq := &ChatSessionRq{
-		Uid: "jack",
+	initApi(c)
+	var s = new(S)
+	var r = new(R)
+	var b bytes.Buffer
+	url, app := prepare(s)
+	json.NewEncoder(&b).Encode(s)
+	req := httptest.NewRequest("POST", url, &b)
+	req.Header = map[string][]string{
+		"Content-type": {"application/json"},
 	}
-	var b = new(bytes.Buffer)
-	json.NewEncoder(b).Encode(rq)
-	// t.Log(b.String())
-	// 创建一个 HTTP 请求
-	req := httptest.NewRequest("POST", "/api/chat/session", b)
-
-	// 使用应用程序处理请求
 	rcv, err := app.Test(req)
 	if err != nil {
 		t.Log(err)
 		t.Fail()
 	}
-	// 检查响应的状态码
 	if rcv.StatusCode != http.StatusOK {
 		t.Errorf("Expected status 200; got %d", rcv.StatusCode)
+		t.Fail()
 	}
 	data, err := io.ReadAll(rcv.Body)
 	if err != nil {
 		t.Log(err)
 		t.Fail()
 	}
-	t.Log(string(data))
+	json.Unmarshal(data, r)
+	checkRes(r)
+}
 
-	// 检查响应的主体内容
+func TestNewSession(t *testing.T) {
+	wrap(t, func(r *ChatSessionRq) (string, *fiber.App) {
+		r.Sid = 100
+		r.Uid = "jack"
+		return "/api/chat/session", newApp()
+	}, func(r *ChatSessionRs) {
+		t.Log(r)
+	})
+}
 
+func TestQuery(t *testing.T) {
+	newDB(yamlConfig.Db)
+	defer client.Close()
+	r, err := client.Session.Query().All(context.Background())
+	if err != nil {
+		t.Log(err)
+		t.Fatal()
+	}
+	t.Log(r)
+}
+
+func TestChat(t *testing.T) {
+	wrap(t, func(s *ChatgptRq) (string, *fiber.App) {
+		s.Sid = 9
+		s.Content = "hello"
+		s.Model = openai.GPT3Dot5Turbo
+		return "/api/chat/qa", newApp()
+	}, func(r *ChatgptRs) {
+		t.Log(r)
+	})
+}
+
+func TestDb(t *testing.T) {
+	newDB(yamlConfig.Db)
+	defer client.Close()
+	// Run the auto migration tool.
+	if err := client.Schema.Create(context.Background()); err != nil {
+		log.Fatalf("failed creating schema resources: %v", err)
+	}
+}
+
+func init() {
+	util.ParseYaml("app.yaml")
+	yamlConfig = util.YamlConfig
+}
+
+func TestHacker(t *testing.T) {
+	cli := openai.NewClient("")
+	// t.Log((reflect.ValueOf(cli).Elem().FieldByName("config").Interface()))
+	proxyURL, _ := url.Parse(yamlConfig.Param.Proxy.URL)
+	(*openai.ClientConfig)(unsafe.Pointer(&cli)).HTTPClient = &http.Client{
+		Transport: &http.Transport{
+			Proxy: http.ProxyURL(proxyURL),
+		},
+	}
 }

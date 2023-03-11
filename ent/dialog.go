@@ -18,10 +18,10 @@ type Dialog struct {
 	ID int `json:"id,omitempty"`
 	// Sid holds the value of the "sid" field.
 	Sid int `json:"sid,omitempty"`
-	// Q holds the value of the "q" field.
-	Q string `json:"q,omitempty"`
-	// A holds the value of the "a" field.
-	A string `json:"a,omitempty"`
+	// User holds the value of the "user" field.
+	User string `json:"user,omitempty"`
+	// Assistant holds the value of the "assistant" field.
+	Assistant string `json:"assistant,omitempty"`
 	// Error holds the value of the "error" field.
 	Error string `json:"error,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
@@ -35,7 +35,7 @@ func (*Dialog) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case dialog.FieldID, dialog.FieldSid:
 			values[i] = new(sql.NullInt64)
-		case dialog.FieldQ, dialog.FieldA, dialog.FieldError:
+		case dialog.FieldUser, dialog.FieldAssistant, dialog.FieldError:
 			values[i] = new(sql.NullString)
 		case dialog.FieldCreatedAt:
 			values[i] = new(sql.NullTime)
@@ -66,17 +66,17 @@ func (d *Dialog) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				d.Sid = int(value.Int64)
 			}
-		case dialog.FieldQ:
+		case dialog.FieldUser:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field q", values[i])
+				return fmt.Errorf("unexpected type %T for field user", values[i])
 			} else if value.Valid {
-				d.Q = value.String
+				d.User = value.String
 			}
-		case dialog.FieldA:
+		case dialog.FieldAssistant:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field a", values[i])
+				return fmt.Errorf("unexpected type %T for field assistant", values[i])
 			} else if value.Valid {
-				d.A = value.String
+				d.Assistant = value.String
 			}
 		case dialog.FieldError:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -121,11 +121,11 @@ func (d *Dialog) String() string {
 	builder.WriteString("sid=")
 	builder.WriteString(fmt.Sprintf("%v", d.Sid))
 	builder.WriteString(", ")
-	builder.WriteString("q=")
-	builder.WriteString(d.Q)
+	builder.WriteString("user=")
+	builder.WriteString(d.User)
 	builder.WriteString(", ")
-	builder.WriteString("a=")
-	builder.WriteString(d.A)
+	builder.WriteString("assistant=")
+	builder.WriteString(d.Assistant)
 	builder.WriteString(", ")
 	builder.WriteString("error=")
 	builder.WriteString(d.Error)

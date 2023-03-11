@@ -2,26 +2,27 @@ package main
 
 import (
 	"testing"
+
+	"github.com/qyqx233/chat-go-api/util"
 )
 
 func TestParse(t *testing.T) {
-	config := parseYaml("app.yaml")
-	t.Log(config.Param.Openai)
+	t.Log(yamlConfig.Param.Openai)
 }
 
 func Test(t *testing.T) {
 	// config := parseYaml("app.yaml")
-	openai := ApiConfig{Ak: "23"}
-	c := &Config{
-		App: &AppConfig{
+	openai := util.ApiConfig{Ak: "23"}
+	c := &util.Config{
+		App: &util.AppConfig{
 			Addr: ":3000",
 		},
-		ApiKey: map[string][]ApiConfig{},
+		ApiKey: map[string][]util.ApiConfig{},
 	}
-	c.ApiKey["openai"] = []ApiConfig{openai}
+	c.ApiKey["openai"] = []util.ApiConfig{openai}
 	// c.Param = make(map[string]map[string]any)
 	// c.Param["openai"] = map[string]any{
 	// 	"token": 4096,
 	// }
-	dumpYaml(c)
+	util.DumpYaml(c)
 }

@@ -16,14 +16,14 @@ import (
 func init() {
 	dialogFields := schema.Dialog{}.Fields()
 	_ = dialogFields
-	// dialogDescQ is the schema descriptor for q field.
-	dialogDescQ := dialogFields[1].Descriptor()
-	// dialog.DefaultQ holds the default value on creation for the q field.
-	dialog.DefaultQ = dialogDescQ.Default.(string)
-	// dialogDescA is the schema descriptor for a field.
-	dialogDescA := dialogFields[2].Descriptor()
-	// dialog.DefaultA holds the default value on creation for the a field.
-	dialog.DefaultA = dialogDescA.Default.(string)
+	// dialogDescUser is the schema descriptor for user field.
+	dialogDescUser := dialogFields[1].Descriptor()
+	// dialog.DefaultUser holds the default value on creation for the user field.
+	dialog.DefaultUser = dialogDescUser.Default.(string)
+	// dialogDescAssistant is the schema descriptor for assistant field.
+	dialogDescAssistant := dialogFields[2].Descriptor()
+	// dialog.DefaultAssistant holds the default value on creation for the assistant field.
+	dialog.DefaultAssistant = dialogDescAssistant.Default.(string)
 	// dialogDescError is the schema descriptor for error field.
 	dialogDescError := dialogFields[3].Descriptor()
 	// dialog.DefaultError holds the default value on creation for the error field.

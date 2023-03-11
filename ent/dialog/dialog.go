@@ -13,10 +13,10 @@ const (
 	FieldID = "id"
 	// FieldSid holds the string denoting the sid field in the database.
 	FieldSid = "sid"
-	// FieldQ holds the string denoting the q field in the database.
-	FieldQ = "q"
-	// FieldA holds the string denoting the a field in the database.
-	FieldA = "a"
+	// FieldUser holds the string denoting the user field in the database.
+	FieldUser = "user"
+	// FieldAssistant holds the string denoting the assistant field in the database.
+	FieldAssistant = "assistant"
 	// FieldError holds the string denoting the error field in the database.
 	FieldError = "error"
 	// FieldCreatedAt holds the string denoting the created_at field in the database.
@@ -29,8 +29,8 @@ const (
 var Columns = []string{
 	FieldID,
 	FieldSid,
-	FieldQ,
-	FieldA,
+	FieldUser,
+	FieldAssistant,
 	FieldError,
 	FieldCreatedAt,
 }
@@ -46,10 +46,10 @@ func ValidColumn(column string) bool {
 }
 
 var (
-	// DefaultQ holds the default value on creation for the "q" field.
-	DefaultQ string
-	// DefaultA holds the default value on creation for the "a" field.
-	DefaultA string
+	// DefaultUser holds the default value on creation for the "user" field.
+	DefaultUser string
+	// DefaultAssistant holds the default value on creation for the "assistant" field.
+	DefaultAssistant string
 	// DefaultError holds the default value on creation for the "error" field.
 	DefaultError string
 	// DefaultCreatedAt holds the default value on creation for the "created_at" field.

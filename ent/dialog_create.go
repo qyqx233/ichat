@@ -26,30 +26,30 @@ func (dc *DialogCreate) SetSid(i int) *DialogCreate {
 	return dc
 }
 
-// SetQ sets the "q" field.
-func (dc *DialogCreate) SetQ(s string) *DialogCreate {
-	dc.mutation.SetQ(s)
+// SetUser sets the "user" field.
+func (dc *DialogCreate) SetUser(s string) *DialogCreate {
+	dc.mutation.SetUser(s)
 	return dc
 }
 
-// SetNillableQ sets the "q" field if the given value is not nil.
-func (dc *DialogCreate) SetNillableQ(s *string) *DialogCreate {
+// SetNillableUser sets the "user" field if the given value is not nil.
+func (dc *DialogCreate) SetNillableUser(s *string) *DialogCreate {
 	if s != nil {
-		dc.SetQ(*s)
+		dc.SetUser(*s)
 	}
 	return dc
 }
 
-// SetA sets the "a" field.
-func (dc *DialogCreate) SetA(s string) *DialogCreate {
-	dc.mutation.SetA(s)
+// SetAssistant sets the "assistant" field.
+func (dc *DialogCreate) SetAssistant(s string) *DialogCreate {
+	dc.mutation.SetAssistant(s)
 	return dc
 }
 
-// SetNillableA sets the "a" field if the given value is not nil.
-func (dc *DialogCreate) SetNillableA(s *string) *DialogCreate {
+// SetNillableAssistant sets the "assistant" field if the given value is not nil.
+func (dc *DialogCreate) SetNillableAssistant(s *string) *DialogCreate {
 	if s != nil {
-		dc.SetA(*s)
+		dc.SetAssistant(*s)
 	}
 	return dc
 }
@@ -117,13 +117,13 @@ func (dc *DialogCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (dc *DialogCreate) defaults() {
-	if _, ok := dc.mutation.Q(); !ok {
-		v := dialog.DefaultQ
-		dc.mutation.SetQ(v)
+	if _, ok := dc.mutation.User(); !ok {
+		v := dialog.DefaultUser
+		dc.mutation.SetUser(v)
 	}
-	if _, ok := dc.mutation.A(); !ok {
-		v := dialog.DefaultA
-		dc.mutation.SetA(v)
+	if _, ok := dc.mutation.Assistant(); !ok {
+		v := dialog.DefaultAssistant
+		dc.mutation.SetAssistant(v)
 	}
 	if _, ok := dc.mutation.Error(); !ok {
 		v := dialog.DefaultError
@@ -140,11 +140,11 @@ func (dc *DialogCreate) check() error {
 	if _, ok := dc.mutation.Sid(); !ok {
 		return &ValidationError{Name: "sid", err: errors.New(`ent: missing required field "Dialog.sid"`)}
 	}
-	if _, ok := dc.mutation.Q(); !ok {
-		return &ValidationError{Name: "q", err: errors.New(`ent: missing required field "Dialog.q"`)}
+	if _, ok := dc.mutation.User(); !ok {
+		return &ValidationError{Name: "user", err: errors.New(`ent: missing required field "Dialog.user"`)}
 	}
-	if _, ok := dc.mutation.A(); !ok {
-		return &ValidationError{Name: "a", err: errors.New(`ent: missing required field "Dialog.a"`)}
+	if _, ok := dc.mutation.Assistant(); !ok {
+		return &ValidationError{Name: "assistant", err: errors.New(`ent: missing required field "Dialog.assistant"`)}
 	}
 	if _, ok := dc.mutation.Error(); !ok {
 		return &ValidationError{Name: "error", err: errors.New(`ent: missing required field "Dialog.error"`)}
@@ -182,13 +182,13 @@ func (dc *DialogCreate) createSpec() (*Dialog, *sqlgraph.CreateSpec) {
 		_spec.SetField(dialog.FieldSid, field.TypeInt, value)
 		_node.Sid = value
 	}
-	if value, ok := dc.mutation.Q(); ok {
-		_spec.SetField(dialog.FieldQ, field.TypeString, value)
-		_node.Q = value
+	if value, ok := dc.mutation.User(); ok {
+		_spec.SetField(dialog.FieldUser, field.TypeString, value)
+		_node.User = value
 	}
-	if value, ok := dc.mutation.A(); ok {
-		_spec.SetField(dialog.FieldA, field.TypeString, value)
-		_node.A = value
+	if value, ok := dc.mutation.Assistant(); ok {
+		_spec.SetField(dialog.FieldAssistant, field.TypeString, value)
+		_node.Assistant = value
 	}
 	if value, ok := dc.mutation.Error(); ok {
 		_spec.SetField(dialog.FieldError, field.TypeString, value)

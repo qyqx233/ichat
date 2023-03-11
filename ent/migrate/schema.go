@@ -12,8 +12,8 @@ var (
 	DialogsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "sid", Type: field.TypeInt},
-		{Name: "q", Type: field.TypeString, Default: ""},
-		{Name: "a", Type: field.TypeString, Default: ""},
+		{Name: "user", Type: field.TypeString, Default: ""},
+		{Name: "assistant", Type: field.TypeString, Default: ""},
 		{Name: "error", Type: field.TypeString, Default: ""},
 		{Name: "created_at", Type: field.TypeTime},
 	}

@@ -41,30 +41,30 @@ func (du *DialogUpdate) AddSid(i int) *DialogUpdate {
 	return du
 }
 
-// SetQ sets the "q" field.
-func (du *DialogUpdate) SetQ(s string) *DialogUpdate {
-	du.mutation.SetQ(s)
+// SetUser sets the "user" field.
+func (du *DialogUpdate) SetUser(s string) *DialogUpdate {
+	du.mutation.SetUser(s)
 	return du
 }
 
-// SetNillableQ sets the "q" field if the given value is not nil.
-func (du *DialogUpdate) SetNillableQ(s *string) *DialogUpdate {
+// SetNillableUser sets the "user" field if the given value is not nil.
+func (du *DialogUpdate) SetNillableUser(s *string) *DialogUpdate {
 	if s != nil {
-		du.SetQ(*s)
+		du.SetUser(*s)
 	}
 	return du
 }
 
-// SetA sets the "a" field.
-func (du *DialogUpdate) SetA(s string) *DialogUpdate {
-	du.mutation.SetA(s)
+// SetAssistant sets the "assistant" field.
+func (du *DialogUpdate) SetAssistant(s string) *DialogUpdate {
+	du.mutation.SetAssistant(s)
 	return du
 }
 
-// SetNillableA sets the "a" field if the given value is not nil.
-func (du *DialogUpdate) SetNillableA(s *string) *DialogUpdate {
+// SetNillableAssistant sets the "assistant" field if the given value is not nil.
+func (du *DialogUpdate) SetNillableAssistant(s *string) *DialogUpdate {
 	if s != nil {
-		du.SetA(*s)
+		du.SetAssistant(*s)
 	}
 	return du
 }
@@ -144,11 +144,11 @@ func (du *DialogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := du.mutation.AddedSid(); ok {
 		_spec.AddField(dialog.FieldSid, field.TypeInt, value)
 	}
-	if value, ok := du.mutation.Q(); ok {
-		_spec.SetField(dialog.FieldQ, field.TypeString, value)
+	if value, ok := du.mutation.User(); ok {
+		_spec.SetField(dialog.FieldUser, field.TypeString, value)
 	}
-	if value, ok := du.mutation.A(); ok {
-		_spec.SetField(dialog.FieldA, field.TypeString, value)
+	if value, ok := du.mutation.Assistant(); ok {
+		_spec.SetField(dialog.FieldAssistant, field.TypeString, value)
 	}
 	if value, ok := du.mutation.Error(); ok {
 		_spec.SetField(dialog.FieldError, field.TypeString, value)
@@ -189,30 +189,30 @@ func (duo *DialogUpdateOne) AddSid(i int) *DialogUpdateOne {
 	return duo
 }
 
-// SetQ sets the "q" field.
-func (duo *DialogUpdateOne) SetQ(s string) *DialogUpdateOne {
-	duo.mutation.SetQ(s)
+// SetUser sets the "user" field.
+func (duo *DialogUpdateOne) SetUser(s string) *DialogUpdateOne {
+	duo.mutation.SetUser(s)
 	return duo
 }
 
-// SetNillableQ sets the "q" field if the given value is not nil.
-func (duo *DialogUpdateOne) SetNillableQ(s *string) *DialogUpdateOne {
+// SetNillableUser sets the "user" field if the given value is not nil.
+func (duo *DialogUpdateOne) SetNillableUser(s *string) *DialogUpdateOne {
 	if s != nil {
-		duo.SetQ(*s)
+		duo.SetUser(*s)
 	}
 	return duo
 }
 
-// SetA sets the "a" field.
-func (duo *DialogUpdateOne) SetA(s string) *DialogUpdateOne {
-	duo.mutation.SetA(s)
+// SetAssistant sets the "assistant" field.
+func (duo *DialogUpdateOne) SetAssistant(s string) *DialogUpdateOne {
+	duo.mutation.SetAssistant(s)
 	return duo
 }
 
-// SetNillableA sets the "a" field if the given value is not nil.
-func (duo *DialogUpdateOne) SetNillableA(s *string) *DialogUpdateOne {
+// SetNillableAssistant sets the "assistant" field if the given value is not nil.
+func (duo *DialogUpdateOne) SetNillableAssistant(s *string) *DialogUpdateOne {
 	if s != nil {
-		duo.SetA(*s)
+		duo.SetAssistant(*s)
 	}
 	return duo
 }
@@ -322,11 +322,11 @@ func (duo *DialogUpdateOne) sqlSave(ctx context.Context) (_node *Dialog, err err
 	if value, ok := duo.mutation.AddedSid(); ok {
 		_spec.AddField(dialog.FieldSid, field.TypeInt, value)
 	}
-	if value, ok := duo.mutation.Q(); ok {
-		_spec.SetField(dialog.FieldQ, field.TypeString, value)
+	if value, ok := duo.mutation.User(); ok {
+		_spec.SetField(dialog.FieldUser, field.TypeString, value)
 	}
-	if value, ok := duo.mutation.A(); ok {
-		_spec.SetField(dialog.FieldA, field.TypeString, value)
+	if value, ok := duo.mutation.Assistant(); ok {
+		_spec.SetField(dialog.FieldAssistant, field.TypeString, value)
 	}
 	if value, ok := duo.mutation.Error(); ok {
 		_spec.SetField(dialog.FieldError, field.TypeString, value)

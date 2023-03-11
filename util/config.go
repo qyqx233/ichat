@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"os"
@@ -27,12 +27,18 @@ type AppConfig struct {
 	Static *AppStaticConfig `json:"static,omitempty"`
 }
 
-type ParamOpenai struct {
+type ParamOpenAI struct {
+	Count int
 	Token int
 }
 
+type ParamProxy struct {
+	URL string `yaml:"url,omitempty"`
+}
+
 type ParamConfig struct {
-	Openai ParamOpenai `yaml:"openai,omitempty"`
+	Openai ParamOpenAI `yaml:"openai,omitempty" json:"openai,omitempty"`
+	Proxy  ParamProxy  `yaml:"proxy,omitempty"`
 }
 
 type Config struct {
@@ -42,7 +48,7 @@ type Config struct {
 	Param  ParamConfig
 }
 
-func parseYaml(path string) *Config {
+func ParseYaml(path string) {
 	var c = new(Config)
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -52,10 +58,12 @@ func parseYaml(path string) *Config {
 	if err != nil {
 		panic(err)
 	}
-	return c
+	YamlConfig = c
 }
 
-func dumpYaml(c *Config) {
+func DumpYaml(c *Config) {
 	data, _ := yaml.Marshal(c)
 	os.WriteFile("app.yaml", data, 0644)
 }
+
+var YamlConfig *Config

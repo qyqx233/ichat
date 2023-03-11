@@ -37,8 +37,8 @@ type DialogMutation struct {
 	id            *int
 	sid           *int
 	addsid        *int
-	q             *string
-	a             *string
+	user          *string
+	assistant     *string
 	error         *string
 	created_at    *time.Time
 	clearedFields map[string]struct{}
@@ -201,76 +201,76 @@ func (m *DialogMutation) ResetSid() {
 	m.addsid = nil
 }
 
-// SetQ sets the "q" field.
-func (m *DialogMutation) SetQ(s string) {
-	m.q = &s
+// SetUser sets the "user" field.
+func (m *DialogMutation) SetUser(s string) {
+	m.user = &s
 }
 
-// Q returns the value of the "q" field in the mutation.
-func (m *DialogMutation) Q() (r string, exists bool) {
-	v := m.q
+// User returns the value of the "user" field in the mutation.
+func (m *DialogMutation) User() (r string, exists bool) {
+	v := m.user
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldQ returns the old "q" field's value of the Dialog entity.
+// OldUser returns the old "user" field's value of the Dialog entity.
 // If the Dialog object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *DialogMutation) OldQ(ctx context.Context) (v string, err error) {
+func (m *DialogMutation) OldUser(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldQ is only allowed on UpdateOne operations")
+		return v, errors.New("OldUser is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldQ requires an ID field in the mutation")
+		return v, errors.New("OldUser requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldQ: %w", err)
+		return v, fmt.Errorf("querying old value for OldUser: %w", err)
 	}
-	return oldValue.Q, nil
+	return oldValue.User, nil
 }
 
-// ResetQ resets all changes to the "q" field.
-func (m *DialogMutation) ResetQ() {
-	m.q = nil
+// ResetUser resets all changes to the "user" field.
+func (m *DialogMutation) ResetUser() {
+	m.user = nil
 }
 
-// SetA sets the "a" field.
-func (m *DialogMutation) SetA(s string) {
-	m.a = &s
+// SetAssistant sets the "assistant" field.
+func (m *DialogMutation) SetAssistant(s string) {
+	m.assistant = &s
 }
 
-// A returns the value of the "a" field in the mutation.
-func (m *DialogMutation) A() (r string, exists bool) {
-	v := m.a
+// Assistant returns the value of the "assistant" field in the mutation.
+func (m *DialogMutation) Assistant() (r string, exists bool) {
+	v := m.assistant
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldA returns the old "a" field's value of the Dialog entity.
+// OldAssistant returns the old "assistant" field's value of the Dialog entity.
 // If the Dialog object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *DialogMutation) OldA(ctx context.Context) (v string, err error) {
+func (m *DialogMutation) OldAssistant(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldA is only allowed on UpdateOne operations")
+		return v, errors.New("OldAssistant is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldA requires an ID field in the mutation")
+		return v, errors.New("OldAssistant requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldA: %w", err)
+		return v, fmt.Errorf("querying old value for OldAssistant: %w", err)
 	}
-	return oldValue.A, nil
+	return oldValue.Assistant, nil
 }
 
-// ResetA resets all changes to the "a" field.
-func (m *DialogMutation) ResetA() {
-	m.a = nil
+// ResetAssistant resets all changes to the "assistant" field.
+func (m *DialogMutation) ResetAssistant() {
+	m.assistant = nil
 }
 
 // SetError sets the "error" field.
@@ -383,11 +383,11 @@ func (m *DialogMutation) Fields() []string {
 	if m.sid != nil {
 		fields = append(fields, dialog.FieldSid)
 	}
-	if m.q != nil {
-		fields = append(fields, dialog.FieldQ)
+	if m.user != nil {
+		fields = append(fields, dialog.FieldUser)
 	}
-	if m.a != nil {
-		fields = append(fields, dialog.FieldA)
+	if m.assistant != nil {
+		fields = append(fields, dialog.FieldAssistant)
 	}
 	if m.error != nil {
 		fields = append(fields, dialog.FieldError)
@@ -405,10 +405,10 @@ func (m *DialogMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case dialog.FieldSid:
 		return m.Sid()
-	case dialog.FieldQ:
-		return m.Q()
-	case dialog.FieldA:
-		return m.A()
+	case dialog.FieldUser:
+		return m.User()
+	case dialog.FieldAssistant:
+		return m.Assistant()
 	case dialog.FieldError:
 		return m.Error()
 	case dialog.FieldCreatedAt:
@@ -424,10 +424,10 @@ func (m *DialogMutation) OldField(ctx context.Context, name string) (ent.Value, 
 	switch name {
 	case dialog.FieldSid:
 		return m.OldSid(ctx)
-	case dialog.FieldQ:
-		return m.OldQ(ctx)
-	case dialog.FieldA:
-		return m.OldA(ctx)
+	case dialog.FieldUser:
+		return m.OldUser(ctx)
+	case dialog.FieldAssistant:
+		return m.OldAssistant(ctx)
 	case dialog.FieldError:
 		return m.OldError(ctx)
 	case dialog.FieldCreatedAt:
@@ -448,19 +448,19 @@ func (m *DialogMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetSid(v)
 		return nil
-	case dialog.FieldQ:
+	case dialog.FieldUser:
 		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetQ(v)
+		m.SetUser(v)
 		return nil
-	case dialog.FieldA:
+	case dialog.FieldAssistant:
 		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetA(v)
+		m.SetAssistant(v)
 		return nil
 	case dialog.FieldError:
 		v, ok := value.(string)
@@ -543,11 +543,11 @@ func (m *DialogMutation) ResetField(name string) error {
 	case dialog.FieldSid:
 		m.ResetSid()
 		return nil
-	case dialog.FieldQ:
-		m.ResetQ()
+	case dialog.FieldUser:
+		m.ResetUser()
 		return nil
-	case dialog.FieldA:
-		m.ResetA()
+	case dialog.FieldAssistant:
+		m.ResetAssistant()
 		return nil
 	case dialog.FieldError:
 		m.ResetError()

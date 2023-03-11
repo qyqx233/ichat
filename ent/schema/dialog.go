@@ -15,9 +15,9 @@ type Dialog struct {
 func (Dialog) Fields() []ent.Field {
 	return []ent.Field{
 		field.Int("sid"),
-		field.String("q").
+		field.String("user").
 			Default(""),
-		field.String("a").
+		field.String("assistant").
 			Default(""),
 		field.String("error").
 			Default(""),

@@ -59,14 +59,14 @@ func Sid(v int) predicate.Dialog {
 	return predicate.Dialog(sql.FieldEQ(FieldSid, v))
 }
 
-// Q applies equality check predicate on the "q" field. It's identical to QEQ.
-func Q(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldEQ(FieldQ, v))
+// User applies equality check predicate on the "user" field. It's identical to UserEQ.
+func User(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldEQ(FieldUser, v))
 }
 
-// A applies equality check predicate on the "a" field. It's identical to AEQ.
-func A(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldEQ(FieldA, v))
+// Assistant applies equality check predicate on the "assistant" field. It's identical to AssistantEQ.
+func Assistant(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldEQ(FieldAssistant, v))
 }
 
 // Error applies equality check predicate on the "error" field. It's identical to ErrorEQ.
@@ -119,134 +119,134 @@ func SidLTE(v int) predicate.Dialog {
 	return predicate.Dialog(sql.FieldLTE(FieldSid, v))
 }
 
-// QEQ applies the EQ predicate on the "q" field.
-func QEQ(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldEQ(FieldQ, v))
+// UserEQ applies the EQ predicate on the "user" field.
+func UserEQ(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldEQ(FieldUser, v))
 }
 
-// QNEQ applies the NEQ predicate on the "q" field.
-func QNEQ(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldNEQ(FieldQ, v))
+// UserNEQ applies the NEQ predicate on the "user" field.
+func UserNEQ(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldNEQ(FieldUser, v))
 }
 
-// QIn applies the In predicate on the "q" field.
-func QIn(vs ...string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldIn(FieldQ, vs...))
+// UserIn applies the In predicate on the "user" field.
+func UserIn(vs ...string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldIn(FieldUser, vs...))
 }
 
-// QNotIn applies the NotIn predicate on the "q" field.
-func QNotIn(vs ...string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldNotIn(FieldQ, vs...))
+// UserNotIn applies the NotIn predicate on the "user" field.
+func UserNotIn(vs ...string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldNotIn(FieldUser, vs...))
 }
 
-// QGT applies the GT predicate on the "q" field.
-func QGT(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldGT(FieldQ, v))
+// UserGT applies the GT predicate on the "user" field.
+func UserGT(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldGT(FieldUser, v))
 }
 
-// QGTE applies the GTE predicate on the "q" field.
-func QGTE(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldGTE(FieldQ, v))
+// UserGTE applies the GTE predicate on the "user" field.
+func UserGTE(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldGTE(FieldUser, v))
 }
 
-// QLT applies the LT predicate on the "q" field.
-func QLT(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldLT(FieldQ, v))
+// UserLT applies the LT predicate on the "user" field.
+func UserLT(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldLT(FieldUser, v))
 }
 
-// QLTE applies the LTE predicate on the "q" field.
-func QLTE(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldLTE(FieldQ, v))
+// UserLTE applies the LTE predicate on the "user" field.
+func UserLTE(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldLTE(FieldUser, v))
 }
 
-// QContains applies the Contains predicate on the "q" field.
-func QContains(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldContains(FieldQ, v))
+// UserContains applies the Contains predicate on the "user" field.
+func UserContains(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldContains(FieldUser, v))
 }
 
-// QHasPrefix applies the HasPrefix predicate on the "q" field.
-func QHasPrefix(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldHasPrefix(FieldQ, v))
+// UserHasPrefix applies the HasPrefix predicate on the "user" field.
+func UserHasPrefix(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldHasPrefix(FieldUser, v))
 }
 
-// QHasSuffix applies the HasSuffix predicate on the "q" field.
-func QHasSuffix(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldHasSuffix(FieldQ, v))
+// UserHasSuffix applies the HasSuffix predicate on the "user" field.
+func UserHasSuffix(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldHasSuffix(FieldUser, v))
 }
 
-// QEqualFold applies the EqualFold predicate on the "q" field.
-func QEqualFold(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldEqualFold(FieldQ, v))
+// UserEqualFold applies the EqualFold predicate on the "user" field.
+func UserEqualFold(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldEqualFold(FieldUser, v))
 }
 
-// QContainsFold applies the ContainsFold predicate on the "q" field.
-func QContainsFold(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldContainsFold(FieldQ, v))
+// UserContainsFold applies the ContainsFold predicate on the "user" field.
+func UserContainsFold(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldContainsFold(FieldUser, v))
 }
 
-// AEQ applies the EQ predicate on the "a" field.
-func AEQ(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldEQ(FieldA, v))
+// AssistantEQ applies the EQ predicate on the "assistant" field.
+func AssistantEQ(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldEQ(FieldAssistant, v))
 }
 
-// ANEQ applies the NEQ predicate on the "a" field.
-func ANEQ(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldNEQ(FieldA, v))
+// AssistantNEQ applies the NEQ predicate on the "assistant" field.
+func AssistantNEQ(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldNEQ(FieldAssistant, v))
 }
 
-// AIn applies the In predicate on the "a" field.
-func AIn(vs ...string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldIn(FieldA, vs...))
+// AssistantIn applies the In predicate on the "assistant" field.
+func AssistantIn(vs ...string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldIn(FieldAssistant, vs...))
 }
 
-// ANotIn applies the NotIn predicate on the "a" field.
-func ANotIn(vs ...string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldNotIn(FieldA, vs...))
+// AssistantNotIn applies the NotIn predicate on the "assistant" field.
+func AssistantNotIn(vs ...string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldNotIn(FieldAssistant, vs...))
 }
 
-// AGT applies the GT predicate on the "a" field.
-func AGT(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldGT(FieldA, v))
+// AssistantGT applies the GT predicate on the "assistant" field.
+func AssistantGT(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldGT(FieldAssistant, v))
 }
 
-// AGTE applies the GTE predicate on the "a" field.
-func AGTE(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldGTE(FieldA, v))
+// AssistantGTE applies the GTE predicate on the "assistant" field.
+func AssistantGTE(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldGTE(FieldAssistant, v))
 }
 
-// ALT applies the LT predicate on the "a" field.
-func ALT(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldLT(FieldA, v))
+// AssistantLT applies the LT predicate on the "assistant" field.
+func AssistantLT(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldLT(FieldAssistant, v))
 }
 
-// ALTE applies the LTE predicate on the "a" field.
-func ALTE(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldLTE(FieldA, v))
+// AssistantLTE applies the LTE predicate on the "assistant" field.
+func AssistantLTE(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldLTE(FieldAssistant, v))
 }
 
-// AContains applies the Contains predicate on the "a" field.
-func AContains(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldContains(FieldA, v))
+// AssistantContains applies the Contains predicate on the "assistant" field.
+func AssistantContains(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldContains(FieldAssistant, v))
 }
 
-// AHasPrefix applies the HasPrefix predicate on the "a" field.
-func AHasPrefix(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldHasPrefix(FieldA, v))
+// AssistantHasPrefix applies the HasPrefix predicate on the "assistant" field.
+func AssistantHasPrefix(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldHasPrefix(FieldAssistant, v))
 }
 
-// AHasSuffix applies the HasSuffix predicate on the "a" field.
-func AHasSuffix(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldHasSuffix(FieldA, v))
+// AssistantHasSuffix applies the HasSuffix predicate on the "assistant" field.
+func AssistantHasSuffix(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldHasSuffix(FieldAssistant, v))
 }
 
-// AEqualFold applies the EqualFold predicate on the "a" field.
-func AEqualFold(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldEqualFold(FieldA, v))
+// AssistantEqualFold applies the EqualFold predicate on the "assistant" field.
+func AssistantEqualFold(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldEqualFold(FieldAssistant, v))
 }
 
-// AContainsFold applies the ContainsFold predicate on the "a" field.
-func AContainsFold(v string) predicate.Dialog {
-	return predicate.Dialog(sql.FieldContainsFold(FieldA, v))
+// AssistantContainsFold applies the ContainsFold predicate on the "assistant" field.
+func AssistantContainsFold(v string) predicate.Dialog {
+	return predicate.Dialog(sql.FieldContainsFold(FieldAssistant, v))
 }
 
 // ErrorEQ applies the EQ predicate on the "error" field.
